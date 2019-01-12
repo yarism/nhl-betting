@@ -13,7 +13,6 @@ exports.stats = async function (matchList) {
 
 async function winPercentages(matchList, teams) {
     for (const match of matchList) {
-        //match['test'] = 'hej';
         let homeTeam = teams.find(function (element) {
             return accents.remove(element.name) == match.home;
         });

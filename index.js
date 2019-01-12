@@ -1,6 +1,5 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const fs = require('fs');
 const teams = require('./teams');
 
 axios.get('https://1x2.se/odds/ishockey/usa/nhl')
@@ -23,43 +22,5 @@ axios.get('https://1x2.se/odds/ishockey/usa/nhl')
             }).catch(err => {
                 // process error here
             });
-            /*axios.get('https://statsapi.web.nhl.com/api/v1/teams')
-                .then((response) => {
-                    if(response.status === 200) {
-                        //console.log(response.data.teams);
-                        const teams = response.data.teams;
-
-                        matchList.forEach(function(match) {
-                            let homeTeam = teams.find(function(element) {
-                                return element.name === match.home;
-                            });
-                            let awayTeam = teams.find(function(element) {
-                                return element.name === match.away;
-                            });
-                            axios.get('https://statsapi.web.nhl.com/api/v1/teams/' + homeTeam.id + '/stats')
-                                .then((response) => {
-                                    if(response.status === 200) {
-                                        console.log(match.home);
-                                        console.log(response.data.stats[0].splits[0].stat);
-                                    }
-                                }, (error) => console.log(err) );
-
-                            axios.get('https://statsapi.web.nhl.com/api/v1/teams/' + awayTeam.id + '/stats')
-                                .then((response) => {
-                                    if(response.status === 200) {
-                                        console.log(match.away);
-                                        console.log(response.data.stats[0].splits[0].stat);
-                                    }
-                                }, (error) => console.log(err) );
-                        });
-                    }
-                }, (error) => console.log(err) );*/
         }
     }, (error) => console.log(err) );
-
-/*axios.get('https://statsapi.web.nhl.com/api/v1/teams')
-    .then((response) => {
-        if(response.status === 200) {
-            console.log(response.data.teams);
-        }
-    }, (error) => console.log(err) );*/
