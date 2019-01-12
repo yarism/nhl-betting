@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const fs = require('fs'); 
+const fs = require('fs');
+const teams = require('./teams');
 
 axios.get('https://1x2.se/odds/ishockey/usa/nhl')
     .then((response) => {
@@ -17,8 +18,12 @@ axios.get('https://1x2.se/odds/ishockey/usa/nhl')
                     awayOdds: $(this).find('.matchList__outcomeList .matchList__outcomeItem:nth-child(3)').text().trim()
                 }
             });
-            console.log(matchList);
-            axios.get('https://statsapi.web.nhl.com/api/v1/teams')
+            teams.stats(matchList).then(result => {
+                console.log(result);
+            }).catch(err => {
+                // process error here
+            });
+            /*axios.get('https://statsapi.web.nhl.com/api/v1/teams')
                 .then((response) => {
                     if(response.status === 200) {
                         //console.log(response.data.teams);
@@ -48,7 +53,7 @@ axios.get('https://1x2.se/odds/ishockey/usa/nhl')
                                 }, (error) => console.log(err) );
                         });
                     }
-                }, (error) => console.log(err) );
+                }, (error) => console.log(err) );*/
         }
     }, (error) => console.log(err) );
 
