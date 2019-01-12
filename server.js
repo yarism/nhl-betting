@@ -1,8 +1,11 @@
 const express = require('express');
 const app = express();
+const cors = require('cors')
 const axios = require('axios');
 const cheerio = require('cheerio');
 const teams = require('./teams');
+
+app.use(cors());
 
 app.get('/', function (req, res) {
     //return res.send('Hello world');
