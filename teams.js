@@ -32,6 +32,7 @@ async function winPercentages(matchList, teams) {
                 .then((response) => {
                     if (response.status === 200) {
                         match.awayteamWinPercentage = response.data.stats[0].splits[0].stat.ptPctg;
+                        match.prediction = match.hometeamWinPercentage - response.data.stats[0].splits[0].stat.ptPctg;
                     }
                 }, (error) => console.log(err));
         }
