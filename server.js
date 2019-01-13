@@ -1,13 +1,16 @@
 const express = require('express');
 const app = express();
+const apicache = require('apicache');
 const cors = require('cors')
 const axios = require('axios');
 const cheerio = require('cheerio');
 const teams = require('./teams');
 
+const cache = apicache.middleware;
+
 app.use(cors());
 
-app.get('/', function (req, res) {
+app.get('/', cache('5 minutes'), function (req, res) {
     //return res.send('Hello world');
     axios.get('https://1x2.se/odds/ishockey/usa/nhl')
     .then((response) => {
