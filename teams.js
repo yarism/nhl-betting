@@ -1,9 +1,9 @@
 const axios = require('axios');
 const accents = require('remove-accents');
 
-exports.stats = async function (matchList) {
+exports.stats = function (matchList) {
     return axios.get('https://statsapi.web.nhl.com/api/v1/teams')
-        .then(async (response) => {
+        .then((response) => {
             if (response.status === 200) {
                 const teams = response.data.teams;
                 return winPercentages(matchList, teams);
